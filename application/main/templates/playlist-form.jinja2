@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+  <!-- Standard Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="icon" href={{ url_for('static', filename='img/spotify_favicon.png') }}>
+
+  <!-- Site Properties -->
+  <title>Clustify</title>
+
+  <style type="text/css"> 
+ 
+    .masthead {
+        background-image: url('{{ url_for('static', filename='img/mixer.jpg') }}') !important;
+        background-size: cover !important;
+}
+  </style>
+
+
+  <link href="{{ url_for('static', filename='dist/css/app.css') }}" rel="stylesheet" type="text/css">
+
+  <script src="{{ url_for('static', filename='dist/js/main.min.js') }}"></script>
+  
+  <script>
+  $(document)
+    .ready(function() {
+
+      // fix menu when passed
+      $('.masthead')
+        .visibility({
+          once: false,
+          onBottomPassed: function() {
+            $('.fixed.menu').transition('fade in');
+          },
+          onBottomPassedReverse: function() {
+            $('.fixed.menu').transition('fade out');
+          }
+        })
+      ;
+
+      // create sidebar and attach to menu open
+      $('.ui.sidebar')
+        .sidebar('attach events', '.toc.item')
+      ;
+
+    })
+  ;
+  </script>
+
+  </head>
+
+
+<div class="ui inverted vertical masthead center aligned segment">
+
+        <div class="ui fluid container">
+          <div class="ui large secondary inverted pointing menu">
+            <div class="left item">
+              <i class="huge play circle icon"></i><a class="brand">Clustify</a>
+            </div>
+          </div>
+        </div>
+</div>
+
+<div class="ui vertical stripe segment">
+    <div class="ui text container">
+        <h2>Choose playlist/s you want clustered</h2>
+        <p></p>
+        <p></p>
+    </div>
+
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {% for i in form.pls %}
+                <div class="ui container">
+                    <p>{{ i }} {{ i.label }}  ({{ totals[loop.index-1] }} tracks)</p>
+                    <p></p>
+                    <p></p>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="huge ui button" type="submit">Submit</button>
+    </form>
+</div>
+
+
+      <div class="ui inverted vertical footer segment">
+        <div class="ui container">
+          <div class="ui stackable inverted divided equal height stackable grid">
+            <div class="ten wide column">
+              <h4 class="ui inverted header">Clustify</h4>
+              <p>
+              Powered by <a href="http://spotify.com">Spotify</a>. Created by <a href="https://github.com/alpdal">@alpdal</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>
+
