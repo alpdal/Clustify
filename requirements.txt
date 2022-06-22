@@ -14,7 +14,7 @@ joblib==0.15.1
 jsmin==2.2.2
 lesscpy==0.14.0
 MarkupSafe==1.1.1
-numpy==1.19.0
+numpy==1.22.0
 pandas==1.0.5
 ply==3.11
 python-dateutil==2.8.1
